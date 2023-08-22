@@ -33,7 +33,7 @@
 #     -109 <= target <= 109
 #     Only one valid answer exists.
 
-nums = [2,7,11,15]
+nums = [2, 7, 11, 15]
 target = 9
 
 
@@ -45,7 +45,7 @@ def twoSum(nums, target):
                 solucao.append(c)
                 solucao.append(j)
             else:
-                continue # continue the array if not done
+                continue  # continue the array if not done
     return solucao
 
 
