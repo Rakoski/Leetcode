@@ -14,8 +14,15 @@ class Solution:
         prev, cur = None, head
 
         while cur:
-            arr = cur.next
+            dummy = cur.next
             cur.next = prev
             prev = cur
-            cur = arr
+            cur = dummy
         return prev
+
+    # enquanto o current não for null, aka, enquanto não chegar na última nodelist
+    # o dummy vai ser o de agora.próximo
+    # agora.próximo vai ser o de antes (pra continuar o loop)
+    # o de antes vai ser o de agora (também pra continuar o loop)
+    # e o de agora vai virar o dummy (pro loop continuar)
+    # retorne a nodelist criada reversamente, que no caso, é o prev (previous)
