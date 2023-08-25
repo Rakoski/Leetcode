@@ -4,6 +4,7 @@ class DoubleNode:
         self.next = None
         self.prev = None
 
+
 class MyLinkedList:
     def __init__(self):
         self.head = None
@@ -38,8 +39,86 @@ class MyLinkedList:
             self.head.prev = new_head  # adicionada a nova node
             self.head = new_head  # a nova node (new_head) agora é a nova head
 
+    # Append a node of value val as the last element of the linked list.
     def addAtTail(self, val: int) -> None:
+        new_tail = DoubleNode(val)
 
+        if not self.tail:
+            self.head = new_tail
+            self.tail = new_tail
+
+        else:
+            new_tail.prev = self.tail  # o node de antes da onde será colocado o novo node é o tail
+            self.tail.next = new_tail
+            self.tail = new_tail
+
+    # Add a node of value val before the indexth node in the linked list. If index equals the length of the linked list,
+    # the node will be appended to the end of the linked list.
+    # If index is greater than the length, the node will not be inserted.
     def addAtIndex(self, index: int, val: int) -> None:
+        if index < 0:
+            return  # não podem ter indices negativos
 
+        new_node = DoubleNode(val)
+
+        if index == 0:  # adding at the head
+
+            new_node.next = self.head  # declarei aonde vai ser colocado a nova node
+            if self.head:  # se tiver algo no node da head
+                self.head.prev = new_node
+            self.head = new_node
+
+            if not self.tail:  # se não tiver nada no tail, isto é, se tiver sendo criada uma nova lista
+                self.tail = new_node
+
+        else:
+            cur = self.head
+            count = 0
+            while cur:
+                if count == (index - 1):
+
+                    new_node.next = cur.next  # conectando o node no meio da lista, no index
+                    new_node.prev = cur  # new_node conecta aonde o current (do while) parou por causa do (index - 1)
+
+                    if cur.next:  # se tiver algo depois do novo node
+                        cur.next.prev = new_node  # faz o update em si. This step updates the prev pointer of cur.next
+                        # to point to the new_node. Now, cur.next is the node following the new_node.
+
+                    else:  # se não tiver nada depois da onde parou o índice, isto é, estamos na última posição
+                        self.tail = new_node  # o tail agora é o new_node
+
+                    cur.next = new_node  # o tal da posição do índice agora é o new_node
+                    break
+
+                cur = cur.next  # esse cur.next seria a node em que o índice está
+                count += 1
+
+
+    # Deletes the indexth node in the linked list, if the index is valid.
     def deleteAtIndex(self, index: int) -> None:
+        # no caso, eu teria que chegar na node, e, se caso for o head ou o tail, terei que fazer o update
+
+        if index < 0:
+            return
+
+        cur = self.head
+        count = 0
+        while cur:
+            if count == index:
+                if cur.next:
+                    cur.next.prev = cur.prev
+                else:
+                    self.tail = cur.prev
+
+                if cur.prev:
+                    cur.prev.next = cur.next
+                else:
+                    self.head = cur.next
+
+                break
+
+            cur = cur.next
+            count += 1
+
+        # esse foi o único que eu consegui fazer mais ou menos
+
