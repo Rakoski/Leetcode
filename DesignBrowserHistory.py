@@ -6,7 +6,6 @@ class DoubleNode:
 
 
 class BrowserHistory:
-
     def __init__(self, homepage: str):
         self.cur = DoubleNode(homepage)
 
