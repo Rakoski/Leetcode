@@ -51,3 +51,20 @@ def twoSum(nums, target):
 
 
 print(twoSum(nums, target))
+
+# better solution, though:
+
+class Solution:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        num_to_index = {}  # Map numbers to their indices
+
+        for index, num in enumerate(nums):
+            complement = target - num
+
+            if complement in num_to_index:
+                return [num_to_index[complement], index]
+
+            num_to_index[num] = index
+
+        return []  # No valid solution found
+
