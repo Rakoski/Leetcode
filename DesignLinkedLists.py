@@ -108,12 +108,10 @@ class MyLinkedList:
                     cur.next.prev = cur.prev
                 else:
                     self.tail = cur.prev
-
                 if cur.prev:
                     cur.prev.next = cur.next
                 else:
                     self.head = cur.next
-
                 break
 
             cur = cur.next

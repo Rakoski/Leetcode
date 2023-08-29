@@ -54,6 +54,7 @@ print(twoSum(nums, target))
 
 # better solution, though:
 
+
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         num_to_index = {}  # Map numbers to their indices
