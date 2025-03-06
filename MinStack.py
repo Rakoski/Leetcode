@@ -13,8 +13,8 @@
 class MinStack(object):
 
     def __init__(self):
-        self.stack = []  # Initialize an empty list to store stack elements
-        self.min_stack = []  # Initialize an empty list to store minimum elements
+        self.stack = []
+        self.min_stack = []
 
     def push(self, val):
         """
@@ -23,7 +23,6 @@ class MinStack(object):
         """
         self.stack.append(val)
 
-        # Updating the min_stack with the new minimum value
         if not self.min_stack or val <= self.min_stack[-1]:
             self.min_stack.append(val)
 
@@ -32,7 +31,6 @@ class MinStack(object):
         :rtype: None
         """
         if self.stack:
-            # Check if the element being popped is the current minimum
             if self.stack[-1] == self.min_stack[-1]:
                 self.min_stack.pop()
             self.stack.pop()
