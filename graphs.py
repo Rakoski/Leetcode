@@ -7,3 +7,5 @@ grafo["anuj"] = []
 grafo["thom"] = []
 grafo["jonny"] = []
 grafo["annecy"] = []
+
+print(grafo)
